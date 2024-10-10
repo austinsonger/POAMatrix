@@ -1,0 +1,131 @@
+Plugin ID,CVE,CVSS,Risk,Host,Protocol,Port,Name,Synopsis,Description,Solution,See Also,Plugin Output,Asset UUID,Vulnerability State,IP Address,FQDN,NetBios,OS,MAC Address,Plugin Family,CVSS Base Score,CVSS Temporal Score,CVSS Temporal Vector,CVSS Vector,CVSS3 Base Score,CVSS3 Temporal Score,CVSS3 Temporal Vector,CVSS3 Vector,System Type,Host Start,Host End,Vulnerability Priority Rating (VPR),First Found,Last Found,Host Scan Schedule ID,Host Scan ID,Indexed At,Last Authenticated Results Date,Last Unauthenticated Results Date,Tracked,Risk Factor,Severity,Original Severity,Modification,Plugin Family ID,Plugin Type,Plugin Version,Service,Plugin Modification Date,Plugin Publication Date,Checks for Malware,Exploit Available,Exploited by Malware,Exploited by Nessus,CANVAS,D2 Elliot,Metasploit,Core Exploits,ExploitHub,Default Account,Patch Available,In The News,Unsupported By Vendor,Last Fixed
+10107,,0,None,www.REDACTED.com,TCP,443,HTTP Server Type and Version,A web server is running on the remote host.,This plugin attempts to determine the type and the version of the   remote web server.,N/A,,"The remote web server type is :
+
+nginx",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.617Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,1.141,www,2020-10-30T00:00:00Z,2000-01-04T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+10386,,0,None,www.REDACTED.com,TCP,80,Web Server No 404 Error Code Check,The remote web server does not return 404 error codes.,"The remote web server is configured such that it does not return '404 Not Found' error codes when a nonexistent file is requested, perhaps returning instead a site map, search page or authentication page.
+
+Nessus has enabled some counter measures for this.  However, they might be insufficient.  If a great number of security holes are produced for this port, they might not all be accurate.",N/A,,"
+
+CGI scanning will be disabled for this host because the host responds
+to requests for non-existent URLs with HTTP code 301
+rather than 404. The requested URL was : 
+
+    http://www.REDACTED.com/GaMxKOGHR5fs.html
+",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.616Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,1.1,www,2022-06-17T00:00:00Z,2000-04-28T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+10662,,0,None,www.REDACTED.com,TCP,443,Web mirroring,Nessus can crawl the remote website.,"This plugin makes a mirror of the remote website(s) and extracts the list of CGIs that are used by the remote host. 
+
+It is suggested that you change the number of pages to mirror in the 'Options' section of the client.",N/A,,"
+Webmirror performed 68 queries in 50s (1.0360 queries per second)
+
+The following CGIs have been discovered :
+
+
++ CGI : /api_v2/workflow/processor
+  Methods : POST
+  Argument : 10
+ 
+  ",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.614Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,3.109,www,2024-07-17T00:00:00Z,2001-05-04T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+11032,,0,None,www.REDACTED.com,TCP,443,Web Server Directory Enumeration,It is possible to enumerate directories on the web server.,"This plugin attempts to determine the presence of various common directories on the remote web server.  By sending a request for a directory, the web server response code indicates if it is a valid directory or not.",N/A,http://projects.webappsec.org/w/page/13246953/Predictable%20Resource%20Location,"
+The following directories were discovered:
+/10, /2, /3, /4, /5, /6, /7, /8, /_themes, /css, /files, /images, /js, /uploads, /themes
+
+While this is not, in and of itself, a bug, you should manually inspect 
+these directories to ensure that they are in compliance with company
+security standards
+",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.607Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,1.115,www,2024-06-07T00:00:00Z,2002-06-26T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+11219,,0,None,www.REDACTED.com,TCP,0,Nessus SYN scanner,It is possible to determine which TCP ports are open.,"This plugin is a SYN 'half-open' port scanner.  It shall be reasonably quick even against a firewalled target. 
+
+Note that SYN scans are less intrusive than TCP (full connect) scans against broken services, but they might cause problems for less robust firewalls and also leave unclosed connections on the remote target, if the network is loaded.",Protect your target with an IP filter.,,"{""listening"":[{""port"":80,""protocol"":""TCP"",""interfaces"":null,""all_interfaces"":false,""service_name"":""www"",""plugin_output"":null},{""port"":443,""protocol"":""TCP"",""interfaces"":null,""all_interfaces"":false,""service_name"":""www"",""plugin_output"":null}],""closed"":{""TCP"":{""discrete"":[],""ranges"":[[1,79],[81,442],[444,65535]]},""UDP"":{""discrete"":[],""ranges"":[[1,79],[81,442],[444,65535]]}}}",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Port scanners,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.620Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,42,remote,1.6,www,2024-05-20T00:00:00Z,2009-02-04T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+19506,,0,None,www.REDACTED.com,TCP,0,Nessus Scan Information,This plugin displays information about the Nessus scan.,"This plugin displays, for each tested host, information about the scan itself :
+
+  - The version of the plugin set.
+  - The type of scanner (Nessus or Nessus Home).
+  - The version of the Nessus Engine.
+  - The port scanner(s) used.
+  - The port range scanned.
+  - The ping round trip time 
+  - Whether credentialed or third-party patch management     checks are possible.
+  - Whether the display of superseded patches is enabled
+  - The date of the scan.
+  - The duration of the scan.
+  - The number of hosts scanned in parallel.
+  - The number of checks done in parallel.",N/A,,"Information about this scan : 
+
+Nessus version : 10.8.3
+Nessus build : 20010
+Plugin feed version : 202409302224
+Scanner edition used : Nessus
+Scanner OS : LINUX
+Scanner distribution : amzn2-aarch64
+Scan type : Normal
+Scan name : Enterprise (REDACTED.com) - WebApp
+Scan policy used : Legacy Web App Scan
+Scanner IP : tenable Vulnerability Management Scanner (35.86.126.31)
+Port scanner(s) : nessus_syn_scanner 
+Port range : 1-65535
+Ping RTT : 190.802 ms
+Thorough tests : yes
+Experimental tests : no
+Scan for Unpatched Vulnerabilities : no
+Plugin debugging enabled : no
+Paranoia level : 1
+Report verbosity : 1
+Safe checks : yes
+Optimize the test : no
+Credentialed checks : no
+Patch management checks : None
+Display superseded patches : yes (supersedence plugin did not launch)
+CGI scanning : enabled
+Web application tests : enabled
+Web app tests -  Test mode : all_pairs
+Web app tests -  Try all HTTP methods : yes
+Web app tests -  Maximum run time : 10 minutes.
+Web app tests -  Stop at first flaw : param
+Max hosts : 30
+Max checks : 4
+Recv timeout : 5
+Backports : None
+Allow post-scan editing : Yes
+Nessus Plugin Signature Checking : Enabled
+Audit File Signature Checking : Disabled
+Scan Start Date : 2024/10/1 4:04 UTC
+Scan duration : 5243 sec
+Scan for malware : no
+",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Settings,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.613Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,41,summary,1.126,,2024-08-05T00:00:00Z,2005-08-26T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+24260,,0,None,www.REDACTED.com,TCP,443,HyperText Transfer Protocol (HTTP) Information,Some information about the remote HTTP configuration can be extracted.,"This test gives some information about the remote HTTP protocol - the version used, whether HTTP Keep-Alive is enabled, etc... 
+
+This test is informational only and does not denote any security problem.",N/A,,"
+Response Code : HTTP/1.1 200 OK
+
+Protocol version : HTTP/1.1
+HTTP/2 TLS Support: Yes
+HTTP/2 Cleartext Support: No
+SSL : yes
+Keep-Alive : no
+Options allowed : (Not implemented)
+Headers :
+
+ ",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.606Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,1.15,www,2024-02-26T00:00:00Z,2007-01-30T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+24260,,0,None,www.REDACTED.com,TCP,80,HyperText Transfer Protocol (HTTP) Information,Some information about the remote HTTP configuration can be extracted.,"This test gives some information about the remote HTTP protocol - the version used, whether HTTP Keep-Alive is enabled, etc... 
+
+This test is informational only and does not denote any security problem.",N/A,,"
+Response Code : HTTP/1.1 301 Moved Permanently
+
+Protocol version : HTTP/1.1
+HTTP/2 TLS Support: No
+HTTP/2 Cleartext Support: No
+SSL : no
+Keep-Alive : no
+Options allowed : (Not implemented)
+Headers :
+
+  Server: awselb/2.0
+  Date: Tue, 01 Oct 2024 04:37:19 GMT
+  Content-Type: text/html
+  Content-Length: 134
+  Connection: keep-alive
+  Location: https://www.REDACTED.com:443/
+  
+Response Body :
+
+",c9f15957-23d1-4cdb-9e18-10dbb14cb8eb,Active,0.000.00.00,www.REDACTED.com,,Linux Kernel 4.1,,Web Servers,0,0,,,0,0,,,unknown,2024-10-01T04:04:26.550Z,2024-10-01T05:33:17.652Z,null,2024-05-15T14:24:55.917Z,2024-10-01T05:33:17.652Z,127d8fef-ce71-558e-cf3a-110f3185c918c096677cdeae28bf,05d3ad30-7e24-467f-978b-366638571a88,2024-10-01T05:40:26.616Z,,2024-10-01T05:32:19Z,TRUE,None,0,0,NONE,11,remote,1.15,www,2024-02-26T00:00:00Z,2007-01-30T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,

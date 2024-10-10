@@ -1,0 +1,146 @@
+Plugin ID,CVE,CVSS,Risk,Host,Protocol,Port,Name,Synopsis,Description,Solution,See Also,Plugin Output,Asset UUID,Vulnerability State,IP Address,FQDN,NetBios,OS,MAC Address,Plugin Family,CVSS Base Score,CVSS Temporal Score,CVSS Temporal Vector,CVSS Vector,CVSS3 Base Score,CVSS3 Temporal Score,CVSS3 Temporal Vector,CVSS3 Vector,System Type,Host Start,Host End,Vulnerability Priority Rating (VPR),First Found,Last Found,Host Scan Schedule ID,Host Scan ID,Indexed At,Last Authenticated Results Date,Last Unauthenticated Results Date,Tracked,Risk Factor,Severity,Original Severity,Modification,Plugin Family ID,Plugin Type,Plugin Version,Service,Plugin Modification Date,Plugin Publication Date,Checks for Malware,Exploit Available,Exploited by Malware,Exploited by Nessus,CANVAS,D2 Elliot,Metasploit,Core Exploits,ExploitHub,Default Account,Patch Available,In The News,Unsupported By Vendor,Last Fixed
+149309,,0,,ro-rds-ec.aws.REDACTED.net,tcp,0,MySQL DB Compliance Checks,Compliance checks for MySQL DB devices.,"""CIS_MySQL_5.7_Community_Benchmark_v2.0.0_Level_2_DB.audit from CIS Oracle MySQL 5.7 Community Edition Benchmark: [null]""
+
+See Also:
+https://workbench.cisecurity.org/files/3844
+
+Policy Value:
+PASSED",N/A,,,8ac97d64-4f3f-4626-8abc-403bcaa774b5,,172.20.20.12,ro-rds-ec.aws.REDACTED.net,,Debian 7.0 Linux Kernel 3.2,,Policy Compliance,0,0,,,0,0,,,unknown,2024-10-01T07:01:27.297Z,2024-10-01T07:18:37.090Z,null,,,34c25e26-1e53-fc8e-8727-55291694e6b61f38ce603be7cd44,2e2564ab-f965-4379-9dca-a4d877b1a490,2024-10-01T07:19:09.077Z,,2024-10-01T07:18:19Z,TRUE,None,null,null,,39,local,,,2024-09-26T00:00:00Z,2022-10-24T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+149309,,0,,ro-rds-ec.aws.REDACTED.net,tcp,0,MySQL DB Compliance Checks,Compliance checks for MySQL DB devices.,"""2.10 Ensure Socket Peer-Credential Authentication is Used Appropriately: [null]""
+
+The server-side auth_socket authentication plugin, authenticates clients that connect to the MySQL server from the local host through the Unix socket file. Users authenticated by the auth_socket need not specify a password when connecting to the server. However, users authenticated by the auth_socket plugin are restricted from connecting remotely; they can only connect from the local host through the Unix socket file. This method is only suitable in situations where the server administrator OS account access is restricted.
+
+Rationale:
+
+This method may be desirable in specific cases, including:
+
+The Linux system where MySQL is running is dedicated to the MySQL server and only the MySQL DBA and OS Admin have access.
+
+When control over user authentication is centralized in the operating system.
+
+It is desirable that audit trails in the database and operating system can use the same user names.
+
+For certain other narrow installation use cases auth_socket may be desirable.
+
+Only local connections for a user.
+
+Impact:
+
+Things to consider when using the operating system to authenticate users:
+
+The user must have an operating system account on the computer which must be accessed.
+
+If a user has logged in using this method and steps away from the terminal, another user could easily log in because this user does not need any passwords or credentials. This could pose a serious security problem.
+
+When an operating system is used to authenticate database users, managing distributed database environments and database links requires special care. Special care must also be taken not to leave such a terminal unlocked and unattended. Hence, we recommend that you carefully evaluate your requirements before opting for auth_socket.
+
+This will not work where distributed connections are required.
+
+Solution:
+Add these options under the [mysqld] option group in the MySQL /etc/my.cnf:
+
+plugin-load-add=auth_socket.so
+auth_socket=FORCE_PLUS_PERMANENT
+
+For example:
+
+For an OS user which can login to MySQL using auth_socket:
+
+CREATE USER '  i'@'localhost' IDENTIFIED WITH auth_socket;
+
+The user can then login using:
+
+mysql -u <user>
+
+See Also:
+https://workbench.cisecurity.org/files/3844
+
+Reference:
+800-171|3.4.1, 800-53|CM-8, 800-53r5|CM-8, CN-L3|8.1.10.2(a), CN-L3|8.1.10.2(b), CSCv8|6.6, CSF|DE.CM-7, CSF|ID.AM-1, CSF|ID.AM-2, CSF|PR.DS-3, GDPR|32.1.b, HIPAA|164.306(a)(1), ITSG-33|CM-8, LEVEL|2M, NESA|T1.2.1, NESA|T1.2.2
+
+Policy Value:
+PASSED",N/A,,,8ac97d64-4f3f-4626-8abc-403bcaa774b5,,172.20.20.12,ro-rds-ec.aws.REDACTED.net,,Debian 7.0 Linux Kernel 3.2,,Policy Compliance,0,0,,,0,0,,,unknown,2024-10-01T07:01:27.297Z,2024-10-01T07:18:37.090Z,null,,,34c25e26-1e53-fc8e-8727-55291694e6b61f38ce603be7cd44,2e2564ab-f965-4379-9dca-a4d877b1a490,2024-10-01T07:19:09.084Z,,2024-10-01T07:18:19Z,TRUE,None,null,null,,39,local,,,2024-09-26T00:00:00Z,2022-10-24T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+149309,,0,Medium,ro-rds-ec.aws.REDACTED.net,tcp,0,MySQL DB Compliance Checks,Compliance checks for MySQL DB devices.,"""6.5 Ensure Audit Logging Is Enabled - audit_log_filter: [ERROR]""
+
+Audit logging is not really included in the Community Edition of MySQL - only the general log. Using the general log is possible, but not practical, because it grows quickly and has an adverse impact on server performance.
+
+Nevertheless, enabling audit logging is an important consideration for a production environment, and third-party tools do exist to help with this. Enable audit logging for
+
+Interactive user sessions
+
+Application sessions (optional)
+
+Rationale:
+
+Audit logging helps to identify who changed what and when. The audit log might be used as evidence in investigations. It might also help to identify what an attacker was able to accomplish.
+
+NOTE: Nessus has provided the target output to assist in reviewing the benchmark to ensure target compliance.
+
+Solution:
+Acquire a third-party MySQL logging solution as available from a variety of sources including, but not necessarily limited to, the following:
+
+The General Query Log
+
+MySQL Enterprise Audit
+
+MariaDB Audit Plugin for MySQL
+
+McAfee MySQL Audit
+
+See Also:
+https://workbench.cisecurity.org/files/3844
+
+Reference:
+800-171|3.3.1, 800-171|3.3.2, 800-171|3.3.6, 800-53|AU-2, 800-53|AU-7, 800-53|AU-12, 800-53r5|AU-2, 800-53r5|AU-7, 800-53r5|AU-12, CN-L3|7.1.2.3(c), CN-L3|8.1.4.3(a), CSCv7|6.2, CSCv8|8.2, CSF|DE.CM-1, CSF|DE.CM-3, CSF|DE.CM-7, CSF|PR.PT-1, CSF|RS.AN-3, GDPR|32.1.b, HIPAA|164.306(a)(1), HIPAA|164.312(b), ITSG-33|AU-2, ITSG-33|AU-7, ITSG-33|AU-12, LEVEL|2M, NESA|M1.2.2, NESA|M5.5.1, NIAv2|AM7, NIAv2|AM11a, NIAv2|AM11b, NIAv2|AM11c, NIAv2|AM11d, NIAv2|AM11e, NIAv2|SS30, NIAv2|VL8, PCI-DSSv3.2.1|10.1, QCSC-v1|3.2, QCSC-v1|6.2, QCSC-v1|8.2.1, QCSC-v1|10.2.1, QCSC-v1|11.2, QCSC-v1|13.2, SWIFT-CSCv1|6.4
+
+Policy Value:
+SQL_POLICY
+sql_request: SELECT * FROM mysql.audit_log_filter;
+sql_expect: REGEX - .+
+
+Error:
+3306/mysql:
+  ERROR: error retrieving data: [Error packet in response to our COM_QUERY.: Table 'mysql.audit_log_filter' doesn't exist.]",N/A,,,8ac97d64-4f3f-4626-8abc-403bcaa774b5,,172.20.20.12,ro-rds-ec.aws.REDACTED.net,,Debian 7.0 Linux Kernel 3.2,,Policy Compliance,0,0,,,0,0,,,unknown,2024-10-01T07:01:27.297Z,2024-10-01T07:18:37.090Z,null,,,34c25e26-1e53-fc8e-8727-55291694e6b61f38ce603be7cd44,2e2564ab-f965-4379-9dca-a4d877b1a490,2024-10-01T07:19:09.091Z,,2024-10-01T07:18:19Z,TRUE,None,null,null,,39,local,$Revision: 1.51 $,,2024-09-26T00:00:00Z,2022-10-24T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
+149309,,0,High,ro-rds-ec.aws.REDACTED.net,tcp,0,MySQL DB Compliance Checks,Compliance checks for MySQL DB devices.,"""2.12 Limit Accepted Transport Layer Security (TLS) Versions: [FAILED]""
+
+MySQL supports multiple protocols of TLS. The higher the version the stronger the security and/or better the performance.
+
+Rationale:
+
+Requiring clients attempting to connect to MySQL to use higher versions of TLS to better protect data in transit.
+
+Impact:
+
+Connections attempting to use an unsupported version of TLS or Cipher will fail.
+
+Solution:
+Set the version(s) of TLS you wish to accept in mysql.conf specify TLS and Ciphers.
+
+For example to only accept TLS 1.3 set tls_version in my.conf:
+
+tls_version=TLSv1.3
+
+If TLS 1.3 is not supported on the Operating System then set to TLS 1.2:
+
+tls_version=TLSv1.2
+
+Note: with this setting, only clients that support the specified TLS version(s) are able to establish an encrypted connection to the server.
+
+Default Value:
+
+All TLS and cipher versions are enabled by default.
+
+See Also:
+https://workbench.cisecurity.org/files/3844
+
+Reference:
+800-171|3.1.13, 800-171|3.5.2, 800-171|3.13.8, 800-53|AC-17(2), 800-53|IA-5, 800-53|IA-5(1), 800-53|SA-15, 800-53|SC-8, 800-53|SC-8(1), 800-53r5|AC-17(2), 800-53r5|IA-5, 800-53r5|IA-5(1), 800-53r5|SA-15, 800-53r5|SC-8, 800-53r5|SC-8(1), CN-L3|7.1.2.7(g), CN-L3|7.1.3.1(d), CN-L3|8.1.2.2(a), CN-L3|8.1.2.2(b), CN-L3|8.1.4.1(c), CN-L3|8.1.4.7(a), CN-L3|8.1.4.8(a), CN-L3|8.2.4.5(c), CN-L3|8.2.4.5(d), CN-L3|8.5.2.2, CSCv7|14.4, CSCv7|18.5, CSCv8|3.10, CSCv8|16.11, CSF|PR.AC-1, CSF|PR.AC-3, CSF|PR.DS-2, CSF|PR.DS-5, CSF|PR.IP-2, CSF|PR.PT-4, GDPR|32.1.a, GDPR|32.1.b, HIPAA|164.306(a)(1), HIPAA|164.312(a)(1), HIPAA|164.312(a)(2)(i), HIPAA|164.312(d), HIPAA|164.312(e)(1), HIPAA|164.312(e)(2)(i), ISO/IEC-27001|A.6.2.2, ISO/IEC-27001|A.10.1.1, ISO/IEC-27001|A.13.2.3, ITSG-33|AC-17(2), ITSG-33|IA-5, ITSG-33|IA-5(1), ITSG-33|SC-8, ITSG-33|SC-8a., ITSG-33|SC-8(1), LEVEL|2A, NESA|T4.3.1, NESA|T4.3.2, NESA|T4.5.1, NESA|T4.5.2, NESA|T5.2.3, NESA|T5.4.2, NESA|T7.3.3, NESA|T7.4.1, NIAv2|AM37, NIAv2|IE8, NIAv2|IE9, NIAv2|IE12, NIAv2|NS5d, NIAv2|NS6b, NIAv2|NS29, NIAv2|SS5, NIAv2|SS6a, NIAv2|SS24, PCI-DSSv3.2.1|2.3, PCI-DSSv3.2.1|4.1, PCI-DSSv4.0|2.2.7, PCI-DSSv4.0|4.2.1, QCSC-v1|3.2, QCSC-v1|4.2, QCSC-v1|5.2.1, QCSC-v1|5.2.2, QCSC-v1|6.2, QCSC-v1|13.2, SWIFT-CSCv1|2.1, SWIFT-CSCv1|2.6, SWIFT-CSCv1|4.1, TBA-FIISB|29.1
+
+Policy Value:
+SQL_POLICY
+sql_request: select @@tls_version;
+sql_expect: REGEX - ^TLSv1\.(2|3)(,|$)
+
+Actual Value:
+3306/mysql:
+  [""TLSv1,TLSv1.1,TLSv1.2""]",N/A,,,8ac97d64-4f3f-4626-8abc-403bcaa774b5,,172.20.20.12,ro-rds-ec.aws.REDACTED.net,,Debian 7.0 Linux Kernel 3.2,,Policy Compliance,0,0,,,0,0,,,unknown,2024-10-01T07:01:27.297Z,2024-10-01T07:18:37.090Z,null,,,34c25e26-1e53-fc8e-8727-55291694e6b61f38ce603be7cd44,2e2564ab-f965-4379-9dca-a4d877b1a490,2024-10-01T07:19:09.095Z,,2024-10-01T07:18:19Z,TRUE,None,null,null,,39,local,$Revision: 1.51 $,,2024-09-26T00:00:00Z,2022-10-24T00:00:00Z,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,
