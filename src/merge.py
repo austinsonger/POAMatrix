@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 # Constants
-DIRECTORY = "./scans_directory"  # Replace with your directory path
+DIRECTORY = "./rawdata"  
 OUTPUT_FILE = "merged_vulnerability_data.csv"
 FILE_EXTENSION = ".csv"
 

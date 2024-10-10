@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Load files
-merged_vulnerability_data_path = 'merged_vulnerability_data.csv'  # Path to CSV file
-poam_excel_path = 'poam/poam.xlsx'  # Path to poam Excel file
+merged_vulnerability_data_path = 'output/merged_vulnerability_data.csv'  #
+poam_excel_path = 'poam/poam.xlsx'  
 
 # Load the "merged_vulnerability_data" as CSV and the poam Excel file, skipping the first two rows
 merged_df = pd.read_csv(merged_vulnerability_data_path, skiprows=2)
@@ -16,7 +16,7 @@ print(merged_df.head())
 
 # Mapping based on YAML and the Tenable columns
 mapping = {
-    "Plugin": "Weakness Source Identifier",  # Adjusted to match the actual column name for Plugin ID
+    "Plugin": "Weakness Source Identifier",  
     "Name": "Weakness Name",
     "Risk": "Original Risk Rating",
     "Host": "Asset Identifier",
