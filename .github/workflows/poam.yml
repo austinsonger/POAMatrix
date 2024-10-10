@@ -31,4 +31,4 @@ jobs:
           credentials: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}  # Google Sheets API credentials
           spreadsheet-id: 'your-google-sheet-id'  
           range: 'Sheet1!A1'  
-          input-file: 'merged_vulnerability_data.csv'  
+          input-file: 'output/merged_vulnerability_data.csv'  

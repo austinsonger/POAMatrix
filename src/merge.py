@@ -4,7 +4,7 @@ import pandas as pd
 
 # Constants
 DIRECTORY = "./rawdata"  
-OUTPUT_FILE = "merged_vulnerability_data.csv"
+OUTPUT_FILE = "./output/merged_vulnerability_data.csv"
 FILE_EXTENSION = ".csv"
 
 def load_and_label_csv(file_path, scan_type):
