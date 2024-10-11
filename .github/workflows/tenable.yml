@@ -2,7 +2,7 @@ name:  Tenable
 
 on:
   workflow_dispatch:
-  push:
+#  push:
 
 jobs:
   fetch_and_save_scans:
@@ -54,8 +54,8 @@ jobs:
       env:
         TIO_ACCESS_KEY: ${{ secrets.TENABLE_ACCESS_KEY }}
         TIO_SECRET_KEY: ${{ secrets.TENABLE_SECRET_KEY }}
-      working-directory: src/poam
-      run: python download-scans.py --download-path ../../evidence-artifacts/commercial
+      working-directory: src
+      run: python download-scans.py --download-path ../output/fromtenable
 
     - name: Commit and Push changes
       run: |
