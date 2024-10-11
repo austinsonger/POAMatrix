@@ -1,0 +1,83 @@
+name:  Tenable
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  fetch_and_save_scans:
+    runs-on: ubuntu-latest
+    permissions:                
+     contents: write          
+     pull-requests: write      
+    env: 
+      CI_COMMIT_MESSAGE: New Tenable Scan Results
+      CI_COMMIT_AUTHOR: Continuous Integration
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: List root directory contents
+      run: ls -la
+
+    - name: List evidence-collection directory contents
+      run: ls -la src/evidence-collection/
+
+    - name: List tenable directory contents
+      run: ls -la src/poam/
+      
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        pip install pytenable click arrow
+
+    - name: Create Tenable evidence artifacts directory
+      run: mkdir -p ../../../evidence-artifacts/commercial/Tenable
+
+    - name: Debug API Key
+      run: echo "Tenable Access Key:${{ secrets.TENABLE_ACCESS_KEY }}"
+
+    - name: Debug environment variables
+      run: printenv | grep TIO
+
+    - name: Debug API Keys
+      run: |
+       echo "Tenable Access Key: ${{ secrets.TENABLE_ACCESS_KEY }}"
+       echo "Tenable Secret Key: ${{ secrets.TENABLE_SECRET_KEY }}"
+
+    - name: Run Tenable Scan Script
+      env:
+        TIO_ACCESS_KEY: ${{ secrets.TENABLE_ACCESS_KEY }}
+        TIO_SECRET_KEY: ${{ secrets.TENABLE_SECRET_KEY }}
+      working-directory: src/poam
+      run: python download-scans.py --download-path ../../evidence-artifacts/commercial
+
+    - name: Commit and Push changes
+      run: |
+       git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+       git config --global user.email "actions@github.com"
+       git add .
+       git commit --verbose -m "${{ env.CI_COMMIT_MESSAGE }}"
+       git status
+       git push --verbose       
+       git fetch origin
+       git rebase --strategy-option=theirs origin/main --verbose
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        force: true
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+
+    - name: Upload Commercial Tenable Reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: tenable-reports
+        path: fake-testdata
+
