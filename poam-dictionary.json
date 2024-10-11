@@ -1,0 +1,153 @@
+[
+    {
+      "field": "POAM ID",
+      "description": "Unique identifier for each POAM Item",
+      "type": "Text"
+    },
+    {
+      "field": "Controls",
+      "description": "Applicable  800-53 Control(s)",
+      "type": "Text"
+    },
+    {
+      "field": "Weakness Name",
+      "description": "Name of the weakness as provided by the scanner or otherwise summarizing the weakness",
+      "type": "Text"
+    },
+    {
+      "field": "Weakness Desription",
+      "description": "Description of the weakness and other information",
+      "type": "Text"
+    },
+    {
+      "field": "Weakness Detector Source",
+      "description": "The scanner name or other source that detected the vulnerability",
+      "type": "Text"
+    },
+    {
+      "field": "Weakness Source Identifier",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Asset Identifier",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Point of Contact",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Resources Required",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Overall Remediation Plan",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Original Detection Date",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Scheduled Completion Date",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Planned Milestones",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Milestone Changes",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Status Date",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Vendor Dependency",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Last Vendor Check-in Date",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Vendor Dependent Product Name",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Original Risk Rating",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Adjusted Risk Rating",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Risk Adjustment",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "False Positive",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Operational Requirement",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Deviation Rationale",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Supporting Documents",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Comments",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Auto-Approve",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Binding Operational Directive 22-01 tracking",
+      "description": "",
+      "type": "Text"
+    },
+    {
+      "field": "Binding Operational Directive 22-01 Due Date",
+      "description": "If this vulnerability is listed among the CISA Known Exploited Vulnerability Catalog (https://www.cisa.gov/known-exploited-vulnerabilities-catalog) include the due date given by CISA for this vulnerability",
+      "type": "Text"
+    },
+    {
+      "field": "CVE",
+      "description": "The associated CVE numbers for this vulnerability",
+      "type": "Text"
+    }
+  ]
+  
