@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 # Constants
-DIRECTORY = "./rawdata"  
+DIRECTORY = "./fake-testdata"  
 OUTPUT_FILE = "./output/merged_vulnerability_data.csv"
 FILE_EXTENSION = ".csv"
 
