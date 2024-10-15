@@ -9,37 +9,39 @@ def load_csv(file_path):
     """Load the CSV file."""
     try:
         print(f"Loading file: {file_path}")
-        df = pd.read_csv(file_path, encoding='utf-8')  # Ensure UTF-8 encoding
+        df = pd.read_csv(file_path, encoding='utf-8')  # Load with UTF-8 encoding
         print(f"Columns found: {list(df.columns)}")
         return df
-    except pd.errors.ParserError as e:
-        print(f"Error parsing {file_path}: {e}")
+    except pd.errors.ParserError:
+        print(f"Error parsing {file_path}. Check for format issues.")
         return pd.DataFrame()
     except Exception as e:
         print(f"Unexpected error loading {file_path}: {e}")
         return pd.DataFrame()
 
 def merge_check_id_and_title(df):
-    """Merge 'check_id' and 'title' columns and remove the originals."""
+    """Merge 'check_id' and 'title' columns, and remove the originals."""
     if 'check_id' in df.columns and 'title' in df.columns:
         print("Merging 'check_id' and 'title' columns...")
-        # Create the merged column, handling any NaN values gracefully
+        # Merge the columns, handling NaN values gracefully
         df['merged'] = df['check_id'].fillna('N/A').astype(str) + ' - ' + df['title'].fillna('N/A').astype(str)
         print("Merge successful. Sample output:")
-        print(df[['merged']].head())  # Show sample merged data
-        
+        print(df[['merged']].head())  # Display sample of merged data
+
         # Drop the old columns
         df = df.drop(['check_id', 'title'], axis=1)
+
+        # Reorder columns to move 'merged' to the first position
+        cols = ['merged'] + [col for col in df.columns if col != 'merged']
+        df = df[cols]
     else:
-        missing_cols = [col for col in ['check_id', 'title'] if col not in df.columns]
-        print(f"Missing columns: {missing_cols}.")
+        print(f"Required columns 'check_id' or 'title' not found.")
     return df
 
 def save_to_csv(df, output_file):
-    """Save the DataFrame to a CSV file with proper quoting."""
+    """Save the DataFrame to a CSV file."""
     try:
-        # Ensure proper quoting for multiline fields
-        df.to_csv(output_file, index=False, quoting=2)  # quoting=2 means QUOTE_NONNUMERIC
+        df.to_csv(output_file, index=False)  # Save without the index
         print(f"Merged CSV saved to {output_file}")
     except Exception as e:
         print(f"Error saving file: {e}")
